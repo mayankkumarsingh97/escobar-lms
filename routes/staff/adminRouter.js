@@ -2,7 +2,7 @@ const express = require("express");
 const {
   registerAdminCtrl,
   loginAdminCtrl,
-  getAdminCtrl,
+  getAdminProfileCtrl,
   getAdminsCtrl,
   deleteAdminCtrl,
   adminSuspendTeacherCtrl,
@@ -12,6 +12,9 @@ const {
   adminPublishTeacherCtrl,
   adminUnPublishTeacherCtrl,
 } = require("../../controllers/staff/adminCtrl");
+const isLoggedIn = require("../../middlewares/isLoggedIn");
+const isAdmin = require("../../middlewares/isAdmin");
+
 const adminRouter = express.Router();
 //
 // admin register
@@ -22,11 +25,11 @@ adminRouter.post("/login", loginAdminCtrl);
 //
 //Get Single admin
 //
-adminRouter.get("/:id", getAdminCtrl);
+adminRouter.get("/profile", isLoggedIn, getAdminProfileCtrl);
 //
 //Get all admin
 //
-adminRouter.get("/", getAdminsCtrl);
+adminRouter.get("/", isLoggedIn, isAdmin, getAdminsCtrl);
 //
 //delete admin
 //

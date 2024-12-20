@@ -19,48 +19,48 @@ const adminSchema = new mongoose.Schema(
       type: String,
       default: "admin",
     },
-    // academicTerms: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "AcademicTerm",
-    //   },
-    // ],
-    // programs: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Program",
-    //   },
-    // ],
-    // yearGroups: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "YearGroup",
-    //   },
-    // ],
-    // academicYears: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "AcademicYear",
-    //   },
-    // ],
-    // classLevels: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "ClassLevel",
-    //   },
-    // ],
-    // teachers: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Teacher",
-    //   },
-    // ],
-    // students: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Student",
-    //   },
-    // ],
+    academicTerms: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AcademicTerm",
+      },
+    ],
+    programs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Program",
+      },
+    ],
+    yearGroups: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "YearGroup",
+      },
+    ],
+    academicYears: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AcademicYear",
+      },
+    ],
+    classLevels: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ClassLevel",
+      },
+    ],
+    teachers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Teacher",
+      },
+    ],
+    students: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Student",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -75,6 +75,10 @@ adminSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
+adminSchema.methods.verifyPassword = async function (enterdPassword) {
+  return await bcrypt.compare(enterdPassword, this.password);
+};
 
 //model
 const Admin = mongoose.model("Admin", adminSchema);
