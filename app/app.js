@@ -22,10 +22,10 @@ app.use((req, res, next) => {
 });
 //
 //
-app.use(isLoggedIn);
 //
 app.use("/api/v1/admins", adminRouter);
 //
+app.use(isLoggedIn);
 //
 //Error Middleware..
 //

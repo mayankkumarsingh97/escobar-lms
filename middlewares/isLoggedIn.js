@@ -11,7 +11,6 @@ const isLoggedIn = async (req, res, next) => {
     const user = await Admin.findById(verifiedToken.id).select(
       "name email role"
     );
-    console.log(user);
     req.userAuth = user;
     next();
   } else {

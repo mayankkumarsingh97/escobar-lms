@@ -29,6 +29,8 @@ exports.registerAdminCtrl = asyncHandler(async (req, res) => {
 //@access Private
 exports.loginAdminCtrl = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  console.log(email)
+  console.log(password)
   //Find user
   const user = await Admin.findOne({ email });
 
@@ -53,8 +55,8 @@ exports.loginAdminCtrl = asyncHandler(async (req, res) => {
 //@ Route GET /api/admin/id
 //@access Private
 exports.getAdminProfileCtrl = asyncHandler(async (req, res) => {
-  console.log(req.userAuth, "userAuth");
-  const admin = await Admin.findById(req.userAuth._id).select(
+ 
+  const admin = await Admin.findById(req.userAuth?._id).select(
     "-password -createdAt -updatedAt"
   );
   if (!admin) {
