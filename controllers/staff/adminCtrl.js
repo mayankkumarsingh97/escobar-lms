@@ -140,7 +140,8 @@ exports.adminPublishTeacherCtrl = asyncHandler((req, res) => {
 // @ access Private
 exports.adminUnPublishTeacherCtrl = asyncHandler((req, res) => {
   res.json({
-    status: "success",
+    status: "success!",
     data: "Admin un-publish results ",
+    error:false
   });
 });
