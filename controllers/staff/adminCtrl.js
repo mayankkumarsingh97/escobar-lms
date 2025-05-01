@@ -46,7 +46,7 @@ exports.loginAdminCtrl = asyncHandler(async (req, res) => {
       message: "admin loggedin suceess!",
     });
   } else {
-    res.json({ message: "Invalid user" });
+    res.json({ message: "Invalid user"  });
   }
 });
 //
