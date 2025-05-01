@@ -113,6 +113,7 @@ exports.adminWithdrawTeacherCtrl = asyncHandler((req, res) => {
   res.json({
     status: "success",
     data: "Admin Withdraw teacher",
+    error:'false'
   });
 });
 
